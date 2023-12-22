@@ -1,0 +1,13 @@
+ci:
+  variables:
+    GATEWAY_PORT: 8080
+  trigger:
+    include:
+      - project: 'todolist-micro-services/pipeline'
+        ref: 'master'
+        file: 'server/node.yml'
+    strategy: depend
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    - if: $CI_COMMIT_BRANCH == "master"
+    - if: $CI_COMMIT_BRANCH == "main"
