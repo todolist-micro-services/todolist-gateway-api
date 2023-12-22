@@ -27,14 +27,18 @@ async function forwardRequest(originalRequest, destinationURL) {
             console.error('No response received:', error.request);
             return {
                 status: 500,
-                data: 'No response received from the other server',
+                data: {
+                    error: 'No response received from the other server',
+                },
             };
         } else {
             console.error('Error setting up the request:', error.message);
             return {
                 error: true,
                 status: 500,
-                data: 'Error setting up the request',
+                data: {
+                    error: 'Error setting up the request',
+                },
             };
         }
     }
